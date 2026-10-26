@@ -1,0 +1,21 @@
+version: 2.1
+
+# Proyecto estático (index.html, style.css, app.js): sin gestor de paquetes,
+# sin build, sin pruebas y sin lint. Este job es un marcador de posición
+# para que el primer pipeline pase; reemplázalo cuando agregues herramientas.
+jobs:
+  placeholder:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Verificar archivos del sitio
+          command: |
+            test -f index.html
+            ls -la
+
+workflows:
+  ci:
+    jobs:
+      - placeholder
